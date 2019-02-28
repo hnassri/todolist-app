@@ -1,16 +1,25 @@
 class TasksController < ApplicationController
-before_action :authenticate_user!
+  protect_from_forgery with: :null_session
+  def index
+    @tasks = Task.all
+    @categories = Category.all
+  end
   def new
     @categories = Category.all
   end
-
+  respond_to :js, :html
   def create
     @task = Task.new(task_params)
     @category = Category.find(category_params)
     @task.category = @category
     if @task.save
-      redirect_to root_path
-      flash[:notice] = "Task created"
+      respond_to do |format|
+        format.html do
+          redirect_to root_path
+          flash[:notice] = "Task created"
+        end
+        format.js 
+      end
     else
       redirect_to root_path
       flash[:notice] = "Please try again"

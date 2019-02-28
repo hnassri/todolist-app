@@ -1,0 +1,4 @@
+<div style="border: 1px solid black;height: 90%;"><center><h3><%= email.object %></h3>
+<p><%= email.body %></p>
+<p><%= link_to "Supprimmer cet email", email, method: :delete, data: {confirm: 'Are you sure?'}, remote: true %></p>
+</center></div>

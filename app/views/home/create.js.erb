@@ -1,0 +1,5 @@
+alert("ça marche")
+$(function(){
+  $(".container").siblings("li").insertAdjacentHTML("beforeend", "<%= j render 'home/liste', task: @task");
+})
+
